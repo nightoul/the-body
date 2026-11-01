@@ -4,9 +4,9 @@ import {
   INTERMEDIATE,
   NOT_PALPABLE,
   PALPABLE,
+  PHASIC,
   SUPERFICIAL,
-  TIGHTNESS_PRONE,
-  WEAKNESS_PRONE,
+  TONIC,
 } from '../src/data/answerValues.js'
 import { acceptedAnswers, isCorrect, normalize } from '../src/lib/answers.js'
 
@@ -68,8 +68,8 @@ describe('isCorrect', () => {
     expect(isCorrect('d', DEEP)).toBe(true)
     expect(isCorrect('y', PALPABLE)).toBe(true)
     expect(isCorrect('n', NOT_PALPABLE)).toBe(true)
-    expect(isCorrect('tight', TIGHTNESS_PRONE)).toBe(true)
-    expect(isCorrect('weak', WEAKNESS_PRONE)).toBe(true)
+    expect(isCorrect('t', TONIC)).toBe(true)
+    expect(isCorrect('p', PHASIC)).toBe(true)
   })
 
   it("doesn't mix up the short forms", () => {
@@ -77,6 +77,6 @@ describe('isCorrect', () => {
     expect(isCorrect('d', INTERMEDIATE)).toBe(false)
     expect(isCorrect('s', DEEP)).toBe(false)
     expect(isCorrect('n', PALPABLE)).toBe(false)
-    expect(isCorrect('weak', TIGHTNESS_PRONE)).toBe(false)
+    expect(isCorrect('p', TONIC)).toBe(false)
   })
 })

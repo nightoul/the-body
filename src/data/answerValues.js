@@ -20,9 +20,10 @@ export const PALPABLE = ['yes', 'y']
 export const NOT_PALPABLE = ['no', 'n']
 export const PALPABILITY = [PALPABLE, NOT_PALPABLE]
 
-export const TIGHTNESS_PRONE = ['tightness-prone', 'tightness prone', 'tightness', 'tight']
-export const WEAKNESS_PRONE = ['weakness-prone', 'weakness prone', 'weakness', 'weak']
-export const JANDA_TYPES = [TIGHTNESS_PRONE, WEAKNESS_PRONE]
+// Tonic muscles tend to get tight, phasic muscles tend to get weak.
+export const TONIC = ['tonic', 't']
+export const PHASIC = ['phasic', 'p']
+export const JANDA_TYPES = [TONIC, PHASIC]
 
 // How the agonists work in a movement situation (movements.js).
 export const CONCENTRIC = ['concentric', 'c']
