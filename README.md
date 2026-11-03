@@ -29,41 +29,58 @@ stops the deploy instead of reaching the live site.
 
 ## Quizzes
 
-- **Muscle properties** (`src/quizzes/MuscleQuiz.jsx`, `#/quiz/muscles`) — a
+- **Muscle properties** (`src/quizzes/muscles/`, `#/quiz/muscles`) — a
   muscle image with questions scattered around it: Latin and Czech name, shape,
   region, depth, palpability and Janda type.
-- **Movements** (`src/quizzes/MovementQuiz.jsx`, `#/quiz/movements`) — a
+- **Basic movements** (`src/quizzes/movements/`, `#/quiz/movements`) — a
   movement situation: name an agonist, sort the synergists, antagonists and
   stabilizers into their roles, and answer the contraction type, plane, chain,
   sides, gravity and the main and secondary regions.
 
-The list of quizzes shown on the homepage is `src/quizzes/index.js`.
+The list of quizzes shown on the homepage is `src/quizzes/index.js`. Quizzes
+without a component yet show a "coming soon" page.
 
 ## Project structure
 
-| Folder | Contents |
-|---|---|
-| `src/pages/` | the two routes: the homepage and a quiz page |
-| `src/quizzes/` | the quizzes themselves, plus `index.js` listing them |
-| `src/components/` | building blocks shared by the quizzes (modal, footer, picture, question chip, answer boxes, sorting task, results) |
-| `src/hooks/` | `useQuizDialog` (opening and closing the modal) and `useQuizProgress` (moving through the items, score) |
-| `src/lib/` | plain helpers: answer matching, shuffling, the scattered chip layout |
-| `src/styles/` | all CSS: one file per component, page and quiz, plus `base.css` for the colours, base styles, buttons and animations used everywhere |
-| `src/data/` | all content (see below) |
+```
+src/
+  main.jsx, App.jsx    entry point and routes
+  pages/               the homepage and the quiz page
+  quizzes/
+    index.js           the list of quizzes (title, description, component)
+    muscles/           one folder per quiz: its component, the questions it
+    movements/           asks (questions.js) and its own CSS
+  shared/              everything used by more than one quiz
+    components/        building blocks of the quizzes, each with its CSS
+    hooks/             useQuizProgress (moving through the items, score)
+    helpers/           plain functions: answer matching, shuffling, chip layout
+    data/              the anatomy content (see below)
+  styles/base.css      global styles: colours, buttons, animations
+  assets/              images, one folder per kind of entry
+```
 
-`src/styles/index.css` imports every style file in the order they apply and is
-the only CSS imported by the app (from `src/main.jsx`).
+Every component, page and quiz imports its own CSS file. Each quiz is loaded
+only when it's opened, so adding quizzes doesn't slow down the homepage.
+
+### Adding a quiz
+
+1. Create a folder in `src/quizzes/` with the quiz component (and its
+   `questions.js` and CSS, if it needs them).
+2. Point the quiz's entry in `src/quizzes/index.js` to it with
+   `component: lazy(() => import('./<folder>/<Quiz>.jsx'))`.
 
 ## Data
 
-All content lives in `src/data/`:
+Content shared between quizzes lives in `src/shared/data/`:
 
 | File | Contents |
 |---|---|
 | `muscles.js` | every muscle and its properties |
 | `movements.js` | movement situations; muscles are referenced by their `id` from `muscles.js` |
 | `muscleShapes.js`, `answerValues.js` | the fixed answer values (shape, region, depth, …) with their accepted short forms |
-| `muscleQuestions.js`, `movementQuestions.js` | which questions each quiz asks |
+| `dataHelpers.js` | the checks run on the data when it loads |
+
+Which questions a quiz asks is in that quiz's own `questions.js`.
 
 The data is checked when the app loads: an unknown value or a reference to a
 muscle that doesn't exist stops the app in development (and is only logged on

@@ -1,4 +1,7 @@
 import { useState } from 'react'
+// The boxes reuse the look of MultiAnswerBox.
+import './answer-box.css'
+import './sorting-task.css'
 
 // Sorting muscles into boxes: drag a muscle onto its box, or tap the muscle and
 // then the box (drag and drop doesn't work on most touch screens). The pool and

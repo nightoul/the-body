@@ -1,21 +1,20 @@
 import { useState } from 'react'
-import QuestionChip from '../components/QuestionChip.jsx'
-import QuizFooter from '../components/QuizFooter.jsx'
-import QuizImage from '../components/QuizImage.jsx'
-import QuizModal, { QuizEmpty } from '../components/QuizModal.jsx'
-import Results from '../components/Results.jsx'
-import { questionsFor } from '../data/muscleQuestions.js'
-import { muscles } from '../data/muscles.js'
-import { useQuizDialog } from '../hooks/useQuizDialog.js'
-import { useQuizProgress } from '../hooks/useQuizProgress.js'
-import { randomLayout } from '../lib/randomLayout.js'
+import QuestionChip from '../../shared/components/QuestionChip.jsx'
+import QuizFooter from '../../shared/components/QuizFooter.jsx'
+import QuizImage from '../../shared/components/QuizImage.jsx'
+import { QuizEmpty, QuizStage } from '../../shared/components/QuizPage.jsx'
+import Results from '../../shared/components/Results.jsx'
+import { muscles } from '../../shared/data/muscles.js'
+import { randomLayout } from '../../shared/helpers/randomLayout.js'
+import { useQuizProgress } from '../../shared/hooks/useQuizProgress.js'
+import { questionsFor } from './questions.js'
+import './muscle-quiz.css'
 
 // Only muscles with an image are quizzed; each gets the questions it has answers for.
 const quizMuscles = muscles.filter((m) => m.image && questionsFor(m).length > 0)
 
 // A muscle picture with its questions scattered around it.
 function MuscleQuiz() {
-  const dialog = useQuizDialog()
   const [layout, setLayout] = useState(() =>
     quizMuscles.length > 0 ? randomLayout(questionsFor(quizMuscles[0])) : [],
   )
@@ -50,7 +49,7 @@ function MuscleQuiz() {
   }
 
   return (
-    <QuizModal {...dialog} onCancel={quiz.handleCancel}>
+    <QuizStage onKeyDown={quiz.handleKeyDown}>
       {quizMuscles.length === 0 ? (
         <QuizEmpty>No muscles with images yet — add some to src/assets/muscles.</QuizEmpty>
       ) : quiz.finished ? (
@@ -59,7 +58,6 @@ function MuscleQuiz() {
           total={quizMuscles.length}
           unit="muscles"
           onRestart={quiz.restart}
-          onClose={dialog.close}
         />
       ) : (
         <>
@@ -71,7 +69,7 @@ function MuscleQuiz() {
           <QuizFooter quiz={quiz} allSolved={allSolved} />
         </>
       )}
-    </QuizModal>
+    </QuizStage>
   )
 }
 

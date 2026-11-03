@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { acceptedAnswers, isCorrect } from '../lib/answers.js'
+import { acceptedAnswers, isCorrect } from '../helpers/answers.js'
+import './question-chip.css'
 
 function QuestionChip({ question, value, solved, open, onOpen, onClose, onSolved, style }) {
   const [draft, setDraft] = useState('')

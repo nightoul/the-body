@@ -1,12 +1,12 @@
-// Checks the content in src/data. Loading the data files already runs their
+// Checks the content in src/shared/data. Loading the data files already runs their
 // own checks (unknown values, unknown muscles in a movement, …), which throw
 // here and make the tests — and the deploy — fail.
 import { describe, expect, it } from 'vitest'
-import { regionQuestions, roleQuestions, singleQuestions } from '../src/data/movementQuestions.js'
-import { ROLES, movements } from '../src/data/movements.js'
-import { questions as muscleQuestions } from '../src/data/muscleQuestions.js'
-import { muscles } from '../src/data/muscles.js'
-import { acceptedAnswers, normalize } from '../src/lib/answers.js'
+import { regionQuestions, roleQuestions, singleQuestions } from '../src/quizzes/movements/questions.js'
+import { ROLES, movements } from '../src/shared/data/movements.js'
+import { questions as muscleQuestions } from '../src/quizzes/muscles/questions.js'
+import { muscles } from '../src/shared/data/muscles.js'
+import { acceptedAnswers, normalize } from '../src/shared/helpers/answers.js'
 
 const isFilled = (value) => acceptedAnswers(value).length > 0 && acceptedAnswers(value).every((v) => v.trim() !== '')
 

@@ -45,13 +45,9 @@ export function useQuizProgress(count, onLoad) {
       setCorrectCount((c) => c + 1)
       advance()
     },
-    // For the dialog's onCancel: Esc closes an open question first, and only
-    // then the whole modal.
-    handleCancel(event) {
-      if (openKey) {
-        event.preventDefault()
-        setOpenKey(null)
-      }
+    // For QuizStage's onKeyDown: Esc closes the open question.
+    handleKeyDown(event) {
+      if (event.key === 'Escape' && openKey) setOpenKey(null)
     },
   }
 }

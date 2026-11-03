@@ -1,0 +1,69 @@
+/* A quiz page: a header, then the quiz filling the rest of the screen. */
+.quiz-page {
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+.quiz-header {
+  flex: none;
+  display: flex;
+  align-items: baseline;
+  gap: 1.5rem;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.back-link {
+  color: var(--muted);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.back-link:hover {
+  color: var(--accent);
+}
+
+.quiz-page-title {
+  font-size: 1.25rem;
+}
+
+/* Not the narrow, padded column of the other pages (see main in base.css). */
+.quiz-main {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+}
+
+/* The quiz itself. cqh/cqw in the quizzes' layouts refer to this area. */
+.quiz-stage {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  max-width: 80rem;
+  margin-inline: auto;
+  container-type: size;
+  display: flex;
+  flex-direction: column;
+}
+
+.quiz-footer {
+  position: absolute;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  display: flex;
+  gap: 0.75rem;
+}
+
+/* Shown instead of a quiz that has nothing to ask yet. */
+.quiz-empty {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.5rem;
+  text-align: center;
+}

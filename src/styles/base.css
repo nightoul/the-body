@@ -1,3 +1,6 @@
+/* Global styles: colours, base elements, buttons and animations used everywhere.
+   Every component, page and quiz imports its own CSS file next to it. */
+
 :root {
   --bg: #fafaf9;
   --surface: #ffffff;
@@ -86,6 +89,7 @@ h1 {
   color: var(--text);
   font: inherit;
   font-weight: 600;
+  text-decoration: none;
   cursor: pointer;
 }
 

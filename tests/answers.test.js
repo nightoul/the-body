@@ -7,8 +7,8 @@ import {
   PHASIC,
   SUPERFICIAL,
   TONIC,
-} from '../src/data/answerValues.js'
-import { acceptedAnswers, isCorrect, normalize } from '../src/lib/answers.js'
+} from '../src/shared/data/answerValues.js'
+import { acceptedAnswers, isCorrect, normalize } from '../src/shared/helpers/answers.js'
 
 describe('acceptedAnswers', () => {
   it('wraps a single answer in a list', () => {

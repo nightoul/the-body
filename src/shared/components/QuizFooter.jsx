@@ -1,8 +1,8 @@
-// SKIP (until everything is answered) and NEXT / FINISH, bottom right of the modal.
+// SKIP (until everything is answered) and NEXT / FINISH, bottom right of the quiz.
 // `quiz` comes from useQuizProgress().
 function QuizFooter({ quiz, allSolved }) {
   return (
-    <div className="modal-footer">
+    <div className="quiz-footer">
       {!allSolved && (
         <button type="button" className="secondary-button" onClick={quiz.skip}>
           SKIP

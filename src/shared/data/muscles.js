@@ -22,10 +22,10 @@ import { FLAT, QUADRILATERAL, RIBBON, ROPE, SHAPES, SMALL, SPINDLE, TRIANGULAR }
 
 // Every image in src/assets/muscles, keyed by file name.
 const imageUrls = byFileName(
-  import.meta.glob('../assets/muscles/*.{png,jpg,jpeg,webp}', { eager: true, import: 'default' }),
+  import.meta.glob('../../assets/muscles/*.{png,jpg,jpeg,webp}', { eager: true, import: 'default' }),
 )
 
-// One property per question in muscleQuestions.js. A value can be a single answer or
+// One property per question in quizzes/muscles/questions.js. A value can be a single answer or
 // a list of accepted answers; the first one is shown once the question is solved.
 // `image` is a file name in src/assets/muscles — muscles whose file doesn't
 // exist yet are skipped by the quiz.

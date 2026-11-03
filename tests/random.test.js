@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
-import { randomLayout } from '../src/lib/randomLayout.js'
-import { shuffled } from '../src/lib/shuffle.js'
+import { randomLayout } from '../src/shared/helpers/randomLayout.js'
+import { shuffled } from '../src/shared/helpers/shuffle.js'
 
 describe('shuffled', () => {
   it('returns the same items in some order, without changing the original', () => {

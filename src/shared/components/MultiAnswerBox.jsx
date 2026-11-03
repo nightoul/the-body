@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
-import { isCorrect, normalize } from '../lib/answers.js'
+import { isCorrect, normalize } from '../helpers/answers.js'
+import './answer-box.css'
 
 // Waiting time before accepting an answer that could still grow into a longer
 // accepted one (e.g. "obliquus externus" → "obliquus externus abdominis").

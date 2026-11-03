@@ -17,7 +17,7 @@ import { muscles } from './muscles.js'
 
 // Every image in src/assets/movements, keyed by file name.
 const imageUrls = byFileName(
-  import.meta.glob('../assets/movements/*.{png,jpg,jpeg,webp}', { eager: true, import: 'default' }),
+  import.meta.glob('../../assets/movements/*.{png,jpg,jpeg,webp}', { eager: true, import: 'default' }),
 )
 
 // Each entry is one concrete situation shown in one picture — the same joint

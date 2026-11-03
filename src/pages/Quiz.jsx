@@ -1,30 +1,23 @@
-import { Link, useParams } from 'react-router'
+import { Suspense } from 'react'
+import { useParams } from 'react-router'
+import QuizPage, { QuizEmpty } from '../shared/components/QuizPage.jsx'
 import { quizzes } from '../quizzes/index.js'
-import Home from './Home.jsx'
 
 function Quiz() {
   const { quizId } = useParams()
   const quiz = quizzes.find((q) => q.id === quizId)
-
-  // An implemented quiz opens straight away as a modal over the homepage.
-  if (quiz?.component) {
-    const QuizComponent = quiz.component
-    return (
-      <>
-        <Home />
-        <QuizComponent />
-      </>
-    )
-  }
+  const QuizComponent = quiz?.component
 
   return (
-    <main>
-      <Link to="/" className="back-link">
-        ← All quizzes
-      </Link>
-      <h1>{quiz ? quiz.title : 'Quiz not found'}</h1>
-      <p className="subtitle">{quiz ? 'Coming soon.' : 'This quiz does not exist.'}</p>
-    </main>
+    <QuizPage title={quiz ? quiz.title : 'Quiz not found'}>
+      {QuizComponent ? (
+        <Suspense fallback={<QuizEmpty>Loading…</QuizEmpty>}>
+          <QuizComponent />
+        </Suspense>
+      ) : (
+        <QuizEmpty>{quiz ? 'Coming soon.' : 'This quiz does not exist.'}</QuizEmpty>
+      )}
+    </QuizPage>
   )
 }
 

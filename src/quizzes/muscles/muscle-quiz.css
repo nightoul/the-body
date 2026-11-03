@@ -8,15 +8,15 @@
   min-height: 0;
   display: grid;
   /* The image column is only as wide as a square image of full height needs
-     (modal height minus this padding), so the question columns get all the
-     remaining width. cqh/cqw refer to the modal, see .quiz-modal. */
+     (quiz height minus this padding), so the question columns get all the
+     remaining width. cqh/cqw refer to the quiz area, see .quiz-stage. */
   grid-template-columns:
     minmax(var(--chip-width), 1fr)
     min(100cqh - 9rem, 100cqw - 3rem - 2 * var(--chip-width) - 2rem)
     minmax(var(--chip-width), 1fr);
   grid-template-rows: minmax(0, 1fr);
   gap: 1rem;
-  /* Equal top/bottom padding keeps the image vertically centred in the modal;
+  /* Equal top/bottom padding keeps the image vertically centred in the quiz;
      the bottom padding also leaves room for the floating NEXT button. */
   padding: 4.5rem 1.5rem;
 }
@@ -26,7 +26,7 @@
 }
 
 /* The left column also uses the space above and below the image; the right one
-   only above, so it stays clear of the close button and the NEXT button. */
+   only above, so it stays clear of the NEXT button. */
 .question-column.left {
   margin-block: -3rem;
 }

@@ -1,9 +1,10 @@
 import { Link } from 'react-router'
 import { quizzes } from '../quizzes/index.js'
+import './home.css'
 
 function Home() {
   return (
-    <main>
+    <main className="home">
       <header>
         <h1>The Body</h1>
       </header>

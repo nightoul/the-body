@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { byFileName, checkEntries } from '../src/data/dataHelpers.js'
+import { byFileName, checkEntries } from '../src/shared/data/dataHelpers.js'
 
 describe('byFileName', () => {
   it('keys image URLs by their file name', () => {

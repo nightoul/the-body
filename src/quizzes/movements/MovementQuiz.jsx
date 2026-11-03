@@ -1,18 +1,18 @@
 import { useState } from 'react'
-import MultiAnswerBox from '../components/MultiAnswerBox.jsx'
-import QuestionChip from '../components/QuestionChip.jsx'
-import QuizFooter from '../components/QuizFooter.jsx'
-import QuizImage from '../components/QuizImage.jsx'
-import QuizModal, { QuizEmpty } from '../components/QuizModal.jsx'
-import Results from '../components/Results.jsx'
-import { SortBox, SortPool } from '../components/SortingTask.jsx'
-import { regionQuestions, roleQuestions, singleQuestions } from '../data/movementQuestions.js'
-import { movements } from '../data/movements.js'
-import { muscles } from '../data/muscles.js'
-import { useQuizDialog } from '../hooks/useQuizDialog.js'
-import { useQuizProgress } from '../hooks/useQuizProgress.js'
-import { acceptedAnswers, isCorrect } from '../lib/answers.js'
-import { shuffled } from '../lib/shuffle.js'
+import MultiAnswerBox from '../../shared/components/MultiAnswerBox.jsx'
+import QuestionChip from '../../shared/components/QuestionChip.jsx'
+import QuizFooter from '../../shared/components/QuizFooter.jsx'
+import QuizImage from '../../shared/components/QuizImage.jsx'
+import { QuizEmpty, QuizStage } from '../../shared/components/QuizPage.jsx'
+import Results from '../../shared/components/Results.jsx'
+import { SortBox, SortPool } from '../../shared/components/SortingTask.jsx'
+import { movements } from '../../shared/data/movements.js'
+import { muscles } from '../../shared/data/muscles.js'
+import { acceptedAnswers, isCorrect } from '../../shared/helpers/answers.js'
+import { shuffled } from '../../shared/helpers/shuffle.js'
+import { useQuizProgress } from '../../shared/hooks/useQuizProgress.js'
+import { regionQuestions, roleQuestions, singleQuestions } from './questions.js'
+import './movement-quiz.css'
 
 // A muscle as an answer: any of its Latin or Czech names, shown without "musculus".
 const muscleById = Object.fromEntries(muscles.map((m) => [m.id, m]))
@@ -30,7 +30,7 @@ function regionAnswer(region) {
   return { key: region[0], accepted: region, display: region[0] }
 }
 
-// The boxes of a movement (from movementQuestions.js), each with its answers;
+// The boxes of a movement (from questions.js), each with its answers;
 // boxes without answers are left out. Roles are split into the ones recalled
 // from memory and the ones sorted.
 function boxesFor(movement) {
@@ -59,7 +59,6 @@ function sortPoolFor(movement) {
 // A movement situation: name an agonist, sort the other muscles into their
 // roles, and answer how the movement works.
 function MovementQuiz() {
-  const dialog = useQuizDialog()
   // Answers typed into the recall and region boxes, and muscles sorted into
   // the sort boxes — both keyed by box.
   const [found, setFound] = useState({})
@@ -128,16 +127,15 @@ function MovementQuiz() {
   }
 
   return (
-    <QuizModal {...dialog} onCancel={quiz.handleCancel}>
+    <QuizStage onKeyDown={quiz.handleKeyDown}>
       {movements.length === 0 ? (
-        <QuizEmpty>No movements yet — add some to src/data/movements.js.</QuizEmpty>
+        <QuizEmpty>No movements yet — add some to src/shared/data/movements.js.</QuizEmpty>
       ) : quiz.finished ? (
         <Results
           correct={quiz.correctCount}
           total={movements.length}
           unit="movements"
           onRestart={quiz.restart}
-          onClose={dialog.close}
         />
       ) : (
         <>
@@ -215,7 +213,7 @@ function MovementQuiz() {
           <QuizFooter quiz={quiz} allSolved={allSolved} />
         </>
       )}
-    </QuizModal>
+    </QuizStage>
   )
 }
 

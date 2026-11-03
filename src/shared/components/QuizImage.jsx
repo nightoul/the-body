@@ -1,3 +1,5 @@
+import './quiz-image.css'
+
 // The picture of a quiz item, scaled to fit its cell. Without an image yet, a
 // placeholder shows where the file is expected (`missingPath`).
 function QuizImage({ src, alt, missingPath }) {

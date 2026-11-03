@@ -1,3 +1,6 @@
+import { Link } from 'react-router'
+import './results.css'
+
 // Results screen by score: over 90 % / 60–90 % / under 60 %.
 function resultFor(correct, total) {
   const ratio = correct / total
@@ -21,7 +24,7 @@ function resultFor(correct, total) {
 }
 
 // `unit` is the plural noun being counted, e.g. "muscles" or "movements".
-function Results({ correct, total, unit, onRestart, onClose }) {
+function Results({ correct, total, unit, onRestart }) {
   const result = resultFor(correct, total)
   return (
     <div className={`congrats ${result.tier}`}>
@@ -39,9 +42,9 @@ function Results({ correct, total, unit, onRestart, onClose }) {
         <button type="button" className="next-button" onClick={onRestart}>
           Play again
         </button>
-        <button type="button" className="secondary-button" onClick={onClose}>
+        <Link to="/" className="secondary-button">
           Back to quizzes
-        </button>
+        </Link>
       </div>
     </div>
   )
