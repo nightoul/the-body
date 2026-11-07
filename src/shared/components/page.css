@@ -1,0 +1,48 @@
+/* A quiz or path page: a header, then the content filling the rest of the screen. */
+.page {
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-header {
+  flex: none;
+  display: flex;
+  align-items: baseline;
+  gap: 1.5rem;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.back-link {
+  color: var(--muted);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.back-link:hover {
+  color: var(--accent);
+}
+
+.page-title {
+  font-size: 1.25rem;
+}
+
+/* Not the narrow, padded column of the homepage (see main in base.css). */
+.page-main {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+}
+
+.page-message {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.5rem;
+  text-align: center;
+}

@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import MultiAnswerBox from '../../shared/components/MultiAnswerBox.jsx'
+import { PageMessage } from '../../shared/components/Page.jsx'
 import QuestionChip from '../../shared/components/QuestionChip.jsx'
 import QuizFooter from '../../shared/components/QuizFooter.jsx'
 import QuizImage from '../../shared/components/QuizImage.jsx'
-import { QuizEmpty, QuizStage } from '../../shared/components/QuizPage.jsx'
+import QuizStage from '../../shared/components/QuizStage.jsx'
 import Results from '../../shared/components/Results.jsx'
 import { SortBox, SortPool } from '../../shared/components/SortingTask.jsx'
 import { movements } from '../../shared/data/movements.js'
@@ -129,7 +130,7 @@ function MovementQuiz() {
   return (
     <QuizStage onKeyDown={quiz.handleKeyDown}>
       {movements.length === 0 ? (
-        <QuizEmpty>No movements yet — add some to src/shared/data/movements.js.</QuizEmpty>
+        <PageMessage>No movements yet — add some to src/shared/data/movements.js.</PageMessage>
       ) : quiz.finished ? (
         <Results
           correct={quiz.correctCount}

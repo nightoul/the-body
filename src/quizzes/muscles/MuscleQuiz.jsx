@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import QuestionChip from '../../shared/components/QuestionChip.jsx'
 import QuizFooter from '../../shared/components/QuizFooter.jsx'
+import { PageMessage } from '../../shared/components/Page.jsx'
 import QuizImage from '../../shared/components/QuizImage.jsx'
-import { QuizEmpty, QuizStage } from '../../shared/components/QuizPage.jsx'
+import QuizStage from '../../shared/components/QuizStage.jsx'
 import Results from '../../shared/components/Results.jsx'
 import { muscles } from '../../shared/data/muscles.js'
 import { randomLayout } from '../../shared/helpers/randomLayout.js'
@@ -51,7 +52,7 @@ function MuscleQuiz() {
   return (
     <QuizStage onKeyDown={quiz.handleKeyDown}>
       {quizMuscles.length === 0 ? (
-        <QuizEmpty>No muscles with images yet — add some to src/assets/muscles.</QuizEmpty>
+        <PageMessage>No muscles with images yet — add some to src/assets/muscles.</PageMessage>
       ) : quiz.finished ? (
         <Results
           correct={quiz.correctCount}
